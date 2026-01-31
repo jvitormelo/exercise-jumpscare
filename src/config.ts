@@ -1,5 +1,10 @@
-export const CONFIG = {
-  MIN_INTERVAL_MINUTES: 10,
-  MAX_INTERVAL_MINUTES: 20,
-  NOTIFICATION_TIMEOUT_SECONDS: 60,
+export const PROFILES = {
+  intense: { min: 10, max: 20 },
+  normal: { min: 20, max: 30 },
+  relaxed: { min: 30, max: 40 },
 } as const;
+
+export type ProfileName = keyof typeof PROFILES;
+
+export const DEFAULT_PROFILE: ProfileName = "intense";
+export const NOTIFICATION_TIMEOUT_SECONDS = 60;

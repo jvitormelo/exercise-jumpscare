@@ -1,5 +1,5 @@
 import { existsSync } from "fs";
-import { CONFIG } from "./config";
+import { NOTIFICATION_TIMEOUT_SECONDS } from "./config";
 import type { Response } from "./logger";
 
 const CUSTOM_SOUND = "./sounds/alert.wav";
@@ -61,7 +61,7 @@ export async function showNotification(exerciseName: string): Promise<Response> 
       "--action=done=Done",
       "--action=skip=Skip",
       `--wait`,
-      `--expire-time=${CONFIG.NOTIFICATION_TIMEOUT_SECONDS * 1000}`,
+      `--expire-time=${NOTIFICATION_TIMEOUT_SECONDS * 1000}`,
     ],
     { stdout: "pipe", stderr: "pipe" }
   );

@@ -1,4 +1,4 @@
-import { CONFIG } from "./config";
+import { PROFILES, DEFAULT_PROFILE, NOTIFICATION_TIMEOUT_SECONDS, type ProfileName } from "./config";
 import { getRandomExercise } from "./exercises";
 import { logResponse, getSessionStats } from "./logger";
 import { checkDependencies, showNotification } from "./notifier";
@@ -6,10 +6,19 @@ import { checkDependencies, showNotification } from "./notifier";
 let running = true;
 let currentTimeout: Timer | null = null;
 
+const profileArg = process.argv[2] as ProfileName | undefined;
+const profileNames = Object.keys(PROFILES) as ProfileName[];
+
+if (profileArg && !profileNames.includes(profileArg)) {
+  console.error(`Unknown profile: ${profileArg}`);
+  console.error(`Available: ${profileNames.join(", ")}`);
+  process.exit(1);
+}
+
+const profile = PROFILES[profileArg ?? DEFAULT_PROFILE];
+
 function getRandomInterval(): number {
-  const min = CONFIG.MIN_INTERVAL_MINUTES;
-  const max = CONFIG.MAX_INTERVAL_MINUTES;
-  return Math.floor(Math.random() * (max - min + 1) + min);
+  return Math.floor(Math.random() * (profile.max - profile.min + 1) + profile.min);
 }
 
 function sleep(minutes: number): Promise<void> {
@@ -20,7 +29,7 @@ function sleep(minutes: number): Promise<void> {
 
 async function main() {
   console.log("Exercise Jumpscare started");
-  console.log(`   Interval: ${CONFIG.MIN_INTERVAL_MINUTES}-${CONFIG.MAX_INTERVAL_MINUTES} minutes`);
+  console.log(`   Profile: ${profileArg ?? DEFAULT_PROFILE} (${profile.min}-${profile.max} min)`);
 
   const { hasNotifySend, hasSound } = await checkDependencies();
 
