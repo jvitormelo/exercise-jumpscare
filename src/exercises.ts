@@ -3,7 +3,7 @@ export type Category = "cardio" | "lower-body" | "upper-body" | "core";
 export type Exercise = {
   name: string;
   category: Category;
-  url: string;
+  url?: string;
 };
 
 export const exercises: Exercise[] = [
@@ -18,6 +18,7 @@ export const exercises: Exercise[] = [
   // Upper Body
   { name: "Push-Ups", category: "upper-body", url: "https://www.youtube.com/watch?v=IODxDxX7oi4" },
   { name: "Plank Shoulder Taps", category: "upper-body", url: "https://www.youtube.com/watch?v=LEZq7QZ8ySQ" },
+  { name: "Katana Slashes", category: "upper-body" },
   // Core
   { name: "Plank", category: "core", url: "https://www.youtube.com/watch?v=pvIjsG5Svck" },
   { name: "Bicycle Crunches", category: "core", url: "https://www.youtube.com/watch?v=9FGilxCbdz8" },
