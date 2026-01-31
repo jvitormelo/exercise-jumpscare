@@ -44,7 +44,9 @@ async function main() {
     if (!running) break;
 
     const exercise = getRandomExercise();
-    console.log(`${exercise.name} (${exercise.category}) - waiting for response...`);
+    console.log(`${exercise.name} (${exercise.category})`);
+    console.log(`   How to: ${exercise.url}`);
+    console.log(`   Waiting for response...`);
 
     const response = await showNotification(exercise.name);
     await logResponse(exercise.name, exercise.category, response);
