@@ -30,4 +30,4 @@ Drop `sounds/alert.wav` for a custom jumpscare sound. May I suggest an air horn.
 
 Linux, Bun, `notify-send`, and a willingness to be bullied by your own computer.
 
-*Built with the burning desire to not die at a desk.*
+_Built with the burning desire to not die at a desk._
