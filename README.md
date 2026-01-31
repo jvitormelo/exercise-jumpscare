@@ -8,9 +8,12 @@ A desktop terrorist that randomly interrupts your day to make you do push-ups.
 
 ```bash
 bun install
+
+# Option 1: Run directly
 bun run start
-# forget about it, get jumpscared in 20-40 min, do exercise, repeat
-# Ctrl+C to stop
+
+# Option 2: Add alias (fish shell), then just run "jumpscare" from anywhere
+fish -c 'alias --save jumpscare="bun run /path/to/exercise-jumpscare/src/index.ts"'
 ```
 
 ## Exercises
